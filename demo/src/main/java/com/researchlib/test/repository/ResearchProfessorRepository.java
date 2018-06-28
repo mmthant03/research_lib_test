@@ -1,5 +1,7 @@
 package com.researchlib.test.repository;
 
-public interface ResearchProfessorRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ResearchProfessorRepository extends JpaRepository<ResearchProfessorRepository, Integer> {
 
 }
