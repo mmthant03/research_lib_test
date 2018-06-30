@@ -1,5 +1,8 @@
 package com.researchlib.test.service;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class ResearchServiceImpl implements ResearchService{
 
 	@Override

@@ -2,12 +2,14 @@ package com.researchlib.test.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "Professor")
 public class Professor {
 
+	@Id
 	@Column(name= "professor_id")
 	private Integer id;
 	

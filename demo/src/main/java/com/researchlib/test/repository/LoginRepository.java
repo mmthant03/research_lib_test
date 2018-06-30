@@ -11,4 +11,7 @@ public interface LoginRepository extends JpaRepository<Login, Integer>{
 
 	@Query("SELECT l from Login l WHERE  l.id = ?1")
     List<Login> findByLoginId(Integer id);
+	
+	@Query("SELECT l from Login l WHERE l.username = ?1")
+	List<Login> findByUsername(String username);
 }

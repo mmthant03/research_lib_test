@@ -2,20 +2,24 @@ package com.researchlib.test.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "Login")
 public class Login {
-	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")
 	private Integer id;
 	
 	@Column(name = "password")
 	private String password;
 	
-	@Column(name = "user_id")
-	private Integer userid;
+	@Column(name = "username")
+	private String username;
 
 	public Integer getId() {
 		return id;
@@ -33,18 +37,20 @@ public class Login {
 		this.password = password;
 	}
 
-	public Integer getUserid() {
-		return userid;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setUserid(Integer userid) {
-		this.userid = userid;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	@Override
 	public String toString() {
-		return "Login [id=" + id + ", password=" + password + ", userid=" + userid + "]";
+		return "Login [id=" + id + ", password=" + password + ", username=" + username + "]";
 	}
+
+	
 
 	
 }
