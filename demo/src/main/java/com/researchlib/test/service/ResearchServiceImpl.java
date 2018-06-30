@@ -1,14 +1,22 @@
 package com.researchlib.test.service;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.researchlib.test.model.Research;
+import com.researchlib.test.repository.ResearchRepository;
 
 @Service
 public class ResearchServiceImpl implements ResearchService{
 
+	@Autowired
+	ResearchRepository researchRepository;
+	
 	@Override
-	public String extractResearch(String researchId, String researchName) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Research> extractResearch() {
+		return researchRepository.findAll();
 	}
 	
 	 public static double similarity(String s1, String s2) {
@@ -53,6 +61,19 @@ public class ResearchServiceImpl implements ResearchService{
 		  public static void printSimilarity(String s, String t) {
 		    System.out.println(String.format(
 		      "%.3f is the similarity between \"%s\" and \"%s\"", similarity(s, t), s, t));
+		  }
+		  
+		  List<Research> searchResearches(String searchString){
+			  List<Research> researches = researchRepository.findAll();
+			  
+			  Double similarity = 0.0;
+			  
+			  for(Research r : researches) {
+				  String rname = r.getName();
+				  String 
+			  }
+			  
+			  return null;
 		  }
 
 }

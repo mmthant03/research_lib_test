@@ -6,7 +6,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import com.researchlib.test.dto.LoginInfoDto;
+import com.researchlib.test.dto.HomeInfoDto;
 import com.researchlib.test.service.LoginService;
+import com.researchlib.test.service.ResearchService;
 
 @RequestMapping("")
 @Controller
@@ -14,6 +16,9 @@ public class LoginController {
 	
 	@Autowired
 	LoginService loginService;
+	
+	@Autowired
+	ResearchService researchService;
 
 	@PostMapping
 	public String homePage(Model model) {
@@ -34,8 +39,11 @@ public class LoginController {
 		
 		boolean isAuthenticated = loginService.authenticate(username, password);
 		
+		
 		if(isAuthenticated) {
-			
+			HomeInfoDto searchInfoString = new HomeInfoDto();
+			searchInfoString.setResearches(researchService.extractResearch());
+			model.addAttribute("searchString", searchInfoString);
 			return "home";
 		} else {
 			return "error";

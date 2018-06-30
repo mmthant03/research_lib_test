@@ -6,4 +6,5 @@ import com.researchlib.test.model.Research;
 
 public interface ResearchRepository extends JpaRepository<Research, Integer> {
 
+	
 }
