@@ -133,6 +133,8 @@
       		<div class = "well">
 				<a th:href="@{'/research/' + ${rL.id}}" th:text="${rL.name}"></a>
 				<br/>
+				Publish Date: <p th:text="${rL.publishDate}"></p>     Status: <p th:text="${rL.completion}"></p>
+				<br/>
 				<p th:text="${rL.description}"></p>
 			</div>
 			<div class = "col-sm-1">
