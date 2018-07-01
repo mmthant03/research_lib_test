@@ -1,18 +1,36 @@
 package com.researchlib.test.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.researchlib.test.dto.ResearchViewDto;
+import com.researchlib.test.model.Professor;
 import com.researchlib.test.model.Research;
+import com.researchlib.test.model.ResearchProfessor;
+import com.researchlib.test.model.ResearchResearcher;
+import com.researchlib.test.model.Researcher;
+import com.researchlib.test.repository.ProfessorRepository;
+import com.researchlib.test.repository.ResearchProfessorRepository;
 import com.researchlib.test.repository.ResearchRepository;
+import com.researchlib.test.repository.ResearchResearcherRepository;
+import com.researchlib.test.repository.ResearcherRepository;
 
 @Service
 public class ResearchServiceImpl implements ResearchService{
 
 	@Autowired
 	ResearchRepository researchRepository;
+	@Autowired
+	ResearcherRepository researcherRepository;
+	@Autowired
+	ProfessorRepository professorRepository;
+	@Autowired
+	ResearchProfessorRepository researchProfessorRepository;
+	@Autowired
+	ResearchResearcherRepository researchResearcherRepository;
 	
 	@Override
 	public List<Research> extractResearch() {
@@ -63,17 +81,51 @@ public class ResearchServiceImpl implements ResearchService{
 		      "%.3f is the similarity between \"%s\" and \"%s\"", similarity(s, t), s, t));
 		  }
 		  
-		  List<Research> searchResearches(String searchString){
+		  @Override
+		  public List<Research> searchResearches(String searchString){
 			  List<Research> researches = researchRepository.findAll();
-			  
-			  Double similarity = 0.0;
+			  List<Research> selectedResearches = new ArrayList<>();
+ 			  
+			 
 			  
 			  for(Research r : researches) {
 				  String rname = r.getName();
-				  String 
+				  Double similarity = similarity(searchString, rname);
+				  if(similarity > 0.000) {	
+					  selectedResearches.add(r);
+				  }
 			  }
 			  
-			  return null;
+			  return selectedResearches;
+		  }
+		  
+		  @Override
+		  public ResearchViewDto getResearch(Integer researchId) {
+			  Research selectedResearch = researchRepository.getOne(researchId);
+			  List<ResearchResearcher> researchers = researchResearcherRepository.findByResearchId(researchId);
+			  List<ResearchProfessor> professors = researchProfessorRepository.findByResearchId(researchId);
+			  
+			  List<String> researcherNames = new ArrayList<>();
+			  List<String> professorNames = new ArrayList<>();
+			  
+			  for (ResearchResearcher rr : researchers) {
+				  Researcher r = researcherRepository.getOne(rr.getResearcherId());
+				  researcherNames.add(r.getName());
+			  }
+			  
+			  for (ResearchProfessor rp : professors) {
+				  Professor p = professorRepository.getOne(rp.getProfessorId());
+				  professorNames.add(p.getName());
+			  }
+			  
+			  ResearchViewDto researchView = new ResearchViewDto();
+			  researchView.setResearchName(selectedResearch.getName());
+			  researchView.setResearchFile(selectedResearch.getFile());
+			  researchView.setDescription(selectedResearch.getDescription());
+			  researchView.setProfessorNames(professorNames);
+			  researchView.setStudentNames(researcherNames);
+			  
+			  return researchView;
 		  }
 
 }

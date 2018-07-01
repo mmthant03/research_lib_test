@@ -11,8 +11,10 @@
 <form th:action="@{/search}" th:object="${searchObject}" method="get">
 <input type="text" th:field="*{searchString}"/>
 </form>
-<div th:each = "rL : ${researchList}">
-<a th:href="@{'/research/' + ${rL.id}}" th:text="${rL}"></a>
-</div>
+<p th:text = "${researchView.researchName}"></p>
+<p th:text = "${researchView.researchFile}"></p>
+<p th:text = "${researchView.professorNames}"></p>
+<p th:text = "${researchView.studentNames}"></p>
+
 </body>
 </html>

@@ -64,6 +64,10 @@ public class LoginServiceImpl implements LoginService{
 		
 	}
 	
+	public List<Login> retrieveData(){
+		return loginRepository.findAll();
+	}
+	
 	
 
 }

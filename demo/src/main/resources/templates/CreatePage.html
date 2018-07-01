@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Project Creator</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+  * {
+    box-sizing: border-box;
+}
+
+input[type=text], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+}
+
+input[type=submit] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+.container {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+
+.col-25 {
+    float: left;
+    width: 25%;
+    margin-top: 6px;
+}
+
+.col-75 {
+    float: left;
+    width: 75%;
+    margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+    .col-25, .col-75, input[type=submit] {
+        width: 100%;
+        margin-top: 0;
+    }
+}
+    /* Remove the navbar's default margin-bottom and rounded borders */ 
+    .navbar {
+      margin-bottom: 0;
+      border-color: #4b4b4b ;
+      background-color: #4b4b4b;
+      border-radius: 0;
+    }
+    
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 450px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      padding-top: 20px;
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+    
+    /* Set black background color, white text and some padding */
+    footer {
+    	width: 100%;
+    	position: fixed;
+    	bottom: 0;
+      	background-color: #555;
+      	color: white;
+      	padding: 5px;
+    }
+    
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height:auto;} 
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+      	 <li> <img src="RH1.jpg" height="50" width="50"> </li>
+        <li><a href="HomePage.html">Home</a></li>
+        <li><a href="#">About</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> LogOut</a></li>
+      </ul>
+       <ul class="nav navbar-nav navbar-right">
+      <li><a href="#" data-target-id="settings"><i class="glyphicon glyphicon-cog"></i> Settings</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><span class="glyphicon glyphicon-user"></span> My Account</a></li>
+      </ul>
+       <form class="navbar-form navbar-right" role="search">
+        <div class="form-group input-group">
+          <input type="text" class="form-control" placeholder="Search..">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button">
+              <span class="glyphicon glyphicon-search"></span>
+            </button>
+          </span>        
+        </div>
+      </form>
+    </div>
+  </div>
+</nav>
+
+<h3 align="center">Project Creator</h3>
+<div class="container">
+  <form action="#">
+    <div class="row">
+      <div class="col-25">
+        <label for="pname">Name</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="pname" name="name" placeholder="Project Name..">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="uname">Institution</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="uname" name="uname" placeholder="Your Institution..">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="author">Lead Author</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="author" name="author" placeholder="Author Name..">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="status">Project Status</label>
+      </div>
+      <div class="col-75">
+        <select id="status" name="status">
+          <option value="Complete">Complete</option>
+          <option value="Incomplete">Incomplete</option>
+          <option value="Recruiting">Recruiting</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="date">Publish Date</label>
+      </div>
+      <div class="col-75">
+        <input type="date" id="pdate" name="date">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="description">Description</label>
+      </div>
+      <div class="col-75">
+        <textarea id="Description" name="Description" placeholder="Describe your project in a few words..." style="height:125px"></textarea>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="email">E-mail</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="email" name="E-mail" placeholder="Your E-mail..">
+      </div>
+    </div>
+    
+    <div class="row">
+      <input type="submit" value="Submit">
+    </div>
+  </form>
+</div>
+
+
+</body>
+<footer class="container-fluid text-center">2018 Research Haven. All Rights Reserved.</footer>

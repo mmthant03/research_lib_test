@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Research Haven</title>
+<link rel="stylesheet" href="LoginPageStyle.css" type="text/css" />
+</head>
+<body class="login">
+<!-- header starts here -->
+<div id="Bar">
+<div id="Frame">
+<div id="logo"><a href="#">Research Haven</a></div>
+<div id="header-main-right">
+<div id="header-main-right-nav">
+<form th:action="@{/home}" th:object="${userInfo}" method="post">
+<table border="0" style="border:none">
+<tr>
+<td ><input type="text" tabindex="1" id="email" placeholder="Username" name="username" class="inputtext radius1" th:field="*{username}"></td>
+<td ><input type="password" tabindex="2" id="pass" placeholder="Password" name="password" class="inputtext radius1" th:field="*{password}"></td>
+<td ><input type="submit" class="button" name="login" value="Login" /></td>
+<td> <a th:href="@{/register}"><p style="color:red">Register here!</p></a> </td>
+</tr>
+</table>
+</form>
+</div>
+</div>
+</div>
+</div>
+<!-- header ends here -->
+<!--loginform-->
+</div>
+<!--loginboxinner-->
+</div>
+<!--loginbox-->
+<header>  </header>
+<article><h2 align="left">Publish your researches.</h2></article>
+<br></br>
+<br></br><br></br><br></br><br></br>
+
+<article> <h2 align="right">View and download from variety of publications. </h2></article>
+<br></br>
+<br></br><br></br><br></br><br></br>
+
+<article><h2 align="left">Explore your business opportunities. </h2></article>
+</body>
+</html>

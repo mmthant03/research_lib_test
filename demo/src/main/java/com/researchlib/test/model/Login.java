@@ -8,11 +8,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Login")
+@Table(name = "login")
 public class Login {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id")
 	private Integer id;
 	
 	@Column(name = "password")
@@ -20,6 +18,10 @@ public class Login {
 	
 	@Column(name = "username")
 	private String username;
+	
+	public Login(){
+		
+	}
 
 	public Integer getId() {
 		return id;

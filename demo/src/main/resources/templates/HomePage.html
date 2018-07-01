@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Home Page</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */ 
+    .navbar {
+      margin-bottom: 0;
+      border-color: #4b4b4b ;
+      background-color: #4b4b4b;
+      border-radius: 0;
+    }
+    
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 450px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      padding-top: 20px;
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+    
+    /* Set black background color, white text and some padding */
+    footer {
+      width: 100%;
+      bottom: 0;
+      position: fixed;
+      background-color: #555;
+      color: white;
+      padding: 5px;
+    }
+    
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height:auto;} 
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+      <li> <img src="RH1.jpg" height="50" width="50"> </li>
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> LogOut</a></li>
+      </ul>
+       <ul class="nav navbar-nav navbar-right">
+      <li><a href="#" data-target-id="settings"><i class="glyphicon glyphicon-cog"></i> Settings</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><span class="glyphicon glyphicon-user"></span> My Account</a></li>
+      </ul>
+       <form class="navbar-form navbar-right" role="search" th:action="@{/search}" th:object="${searchObject}" method="get">
+        <div class="form-group input-group">
+          <input type="text" class="form-control" placeholder="Search.." th:field="*{searchString}">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button">
+              <span class="glyphicon glyphicon-search"></span>
+            </button>
+          </span>        
+        </div>
+      </form>
+    </div>
+  </div>
+</nav>
+
+<div class="container text-center">    
+  <div class="row">
+    <div class="col-sm-3 well">
+      <div class="well">
+        <b> Projects </b>
+        
+      </div>
+      <div class="well">
+        <p><a href="#"><i>Tags</i></a></p>
+        <p>
+          <span class="label label-default">Robotics</span>
+          <span class="label label-primary">A I</span>
+          <span class="label label-success">Electronics</span>
+          <span class="label label-info">IOT</span>
+          <span class="label label-warning">Bio Tech</span>
+          <span class="label label-danger">Material Science</span>
+          <span class="label label-info">Undergrad</span>
+          <span class="label label-success">Graduate</span>
+          <span class="label label-warning">PhD</span>
+        </p>
+      </div>
+      
+       <div class="well">
+      	<p> <a th:href="@{'/create'}"> Project Creator</a> </p>
+      </div>
+      
+    </div>
+    <div class="col-sm-9">
+    
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="panel panel-default text-left">
+       
+          </div>
+        </div>
+      </div>
+      
+      
+      <div th:each = "rL : ${researchList}">
+      	<div class ="row">
+      		<div class = "col-sm-1">
+      		</div>
+      		<div class = "col-sm-11">
+      		<div class = "well">
+				<a th:href="@{'/research/' + ${rL.id}}" th:text="${rL.name}"></a>
+				<br/>
+				Publish Date: <p th:text="${rL.publishDate}"></p>     Status: <p th:text="${rL.completion}"></p>
+				<br/>
+				<p th:text="${rL.description}"></p>
+			</div>
+			<div class = "col-sm-1">
+			
+			
+			</div>
+			</div>
+	  </div>
+	  </div>
+      
+      
+ 
+    
+    </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</body>
+<footer class="container-fluid text-center">
+  <p>2018 Research Haven All Rights Reserved.</p>
+</footer>
+</html>

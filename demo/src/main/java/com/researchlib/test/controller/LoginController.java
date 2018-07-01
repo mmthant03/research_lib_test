@@ -6,11 +6,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import com.researchlib.test.dto.LoginInfoDto;
-import com.researchlib.test.dto.HomeInfoDto;
+import com.researchlib.test.repository.ResearchRepository;
+import com.researchlib.test.dto.ResearchListDto;
+import com.researchlib.test.dto.SearchInfoDto;
 import com.researchlib.test.service.LoginService;
 import com.researchlib.test.service.ResearchService;
 
-@RequestMapping("")
+
 @Controller
 public class LoginController {
 	
@@ -19,11 +21,14 @@ public class LoginController {
 	
 	@Autowired
 	ResearchService researchService;
+	
+	@Autowired
+	ResearchRepository researchRepository;
 
-	@PostMapping
+	@RequestMapping(value = "/")
 	public String homePage(Model model) {
 		model.addAttribute("userInfo", new LoginInfoDto());
-		return "login";
+		return "LoginPage";
 	}
 	
 //	@RequestMapping(value="/register", method = RequestMethod.POST)
@@ -32,22 +37,31 @@ public class LoginController {
 //		
 //	}
 	
+	
+	
 	@RequestMapping(value = "/home", method = RequestMethod.POST)
 	public String authenticate(@ModelAttribute LoginInfoDto loginInfo, Model model) {
 		String username = loginInfo.getUsername();
 		String password = loginInfo.getPassword();
 		
 		boolean isAuthenticated = loginService.authenticate(username, password);
-		
+		model.addAttribute("isexist", isAuthenticated);
 		
 		if(isAuthenticated) {
-			HomeInfoDto searchInfoString = new HomeInfoDto();
-			searchInfoString.setResearches(researchService.extractResearch());
-			model.addAttribute("searchString", searchInfoString);
-			return "home";
+			ResearchListDto researchList = new ResearchListDto();
+			SearchInfoDto searchObject = new SearchInfoDto();
+			researchList.setResearches(researchService.extractResearch());
+			model.addAttribute("researchList", researchList.getResearches());
+			model.addAttribute("searchObject", searchObject);
+			return "HomePage";
 		} else {
 			return "error";
 		}
 		
+	}
+	
+	@RequestMapping(value= "/register", method = {RequestMethod.GET, RequestMethod.POST})
+	public String register() {
+		return "Register";
 	}
 }
