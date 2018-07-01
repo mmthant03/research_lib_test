@@ -10,6 +10,7 @@ buildscript {
 	}
 }
 
+apply plugin: 'distribution'
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
@@ -21,6 +22,17 @@ sourceCompatibility = 1.8
 
 repositories {
 	mavenCentral()
+}
+
+distributions {
+    main {
+        baseName = 'someName'
+        contents {
+            from { 'src/'}
+            from {'build.gradle'}
+            from {'settings.gradle' }
+        }
+    }
 }
 
 

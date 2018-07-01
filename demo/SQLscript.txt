@@ -1,0 +1,163 @@
+-- Table: public.login
+
+-- DROP TABLE public.login;
+
+CREATE TABLE public.login
+(
+    id integer NOT NULL,
+    password character varying(255) COLLATE pg_catalog."default",
+    username character varying(255) COLLATE pg_catalog."default"
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+-- ALTER TABLE public.login
+   -- OWNER to postgres;
+    
+-- Table: public.professor
+
+-- DROP TABLE public.professor;
+
+CREATE TABLE public.professor
+(
+    professor_id integer NOT NULL,
+    professor_name character varying(255) COLLATE pg_catalog."default",
+    professor_address character varying(255) COLLATE pg_catalog."default",
+    phone_no integer,
+    email_address character varying(255) COLLATE pg_catalog."default"
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+--ALTER TABLE public.professor
+  --  OWNER to postgres;
+
+-- Table: public.research
+
+-- DROP TABLE public.research;
+
+CREATE TABLE public.research
+(
+    research_id integer NOT NULL,
+    research_name character varying(1000) COLLATE pg_catalog."default",
+    research_description character varying(1000) COLLATE pg_catalog."default",
+    research_file character varying(1000) COLLATE pg_catalog."default",
+    publish_date date,
+    completion character varying(255) COLLATE pg_catalog."default"
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+--ALTER TABLE public.research
+  --  OWNER to postgres;
+  
+-- Table: public.researcher
+
+-- DROP TABLE public.researcher;
+
+CREATE TABLE public.researcher
+(
+    researcher_id integer NOT NULL,
+    researcher_name character varying(255) COLLATE pg_catalog."default",
+    researcher_address character varying(255) COLLATE pg_catalog."default",
+    phone_no integer,
+    email_address character varying(255) COLLATE pg_catalog."default"
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+--ALTER TABLE public.researcher
+  --  OWNER to postgres;
+
+-- Table: public.researchprofessor
+
+-- DROP TABLE public.researchprofessor;
+
+CREATE TABLE public.researchprofessor
+(
+    id integer NOT NULL,
+    research_id integer,
+    professor_id integer
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+--ALTER TABLE public.researchprofessor
+  --  OWNER to postgres;
+
+-- Table: public.researchresearcher
+
+-- DROP TABLE public.researchresearcher;
+
+CREATE TABLE public.researchresearcher
+(
+    id integer NOT NULL,
+    research_id integer,
+    researcher_id integer
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+--ALTER TABLE public.researchresearcher
+  --  OWNER to postgres;
+
+
+INSERT INTO public.professor(
+	professor_id, professor_name, professor_address, phone_no, email_address)
+	VALUES (5001, 'Jane Doe', '1 Hampden St,Boston', 1111, 'janedoe@nth.com');
+	
+﻿INSERT INTO public.professor(
+	professor_id, professor_name, professor_address, phone_no, email_address)
+	VALUES (5002, 'Jack Doe', '2 Hampden St,Boston', 2222, 'jackdoe@nth.com');
+
+INSERT INTO public.login(
+	id, password, username)
+	VALUES (1, 'password', 'username');
+
+INSERT INTO public.research(
+	research_id, research_name, research_description, research_file, publish_date, completion)
+	VALUES (90002, 'Control of Exoskeleton for Assistion Human Labour in Industry', 'This paper presents a position controller that is in the inner loop position servo of an admittance...', 'https://drive.google.com/file/d/1xi1fi6m_ogHPHd9PIltJurqnWpwvemjs/preview', '2017-08-09', 'Complete');
+	
+INSERT INTO public.research(
+	research_id, research_name, research_description, research_file, publish_date, completion)
+	VALUES (90003, 'Flexible Robot Arm', 'This paper proposes a method to compensate the effect of non-linear friction in one DOF-...', 'https://drive.google.com/file/d/1msTSutO19SWRE692DNlcgCJi1xIbImFI/preview', '2017-08-09', 'Complete');
+	
+INSERT INTO public.researcher(
+	researcher_id, researcher_name, researcher_address, phone_no, email_address)
+	VALUES (10003, 'Saw San Oo', 'Hlaing', 33333, 'sso@gmail.com');
+	
+INSERT INTO public.researcher(
+	researcher_id, researcher_name, researcher_address, phone_no, email_address)
+	VALUES (10004, 'Aung Myo Thant Sin', 'Latha', 44444, 'amts@gmail.com');
+	
+INSERT INTO public.researcher(
+	researcher_id, researcher_name, researcher_address, phone_no, email_address)
+	VALUES (10005, 'Kaung Khant Ko Ko Han', 'Hlaing', 55555, 'kkkkh@gmail.com');
+	
+INSERT INTO public.researchresearcher(
+	id, research_id, researcher_id)
+	VALUES (2, 90002, 10005);
+	
+INSERT INTO public.researchresearcher(
+	id, research_id, researcher_id)
+	VALUES (3, 90002, 10004);
+	
+INSERT INTO public.researchprofessor(
+	id, research_id, professor_id)
+	VALUES (2, 90002, 5001);
+	
+INSERT INTO public.researchprofessor(
+	id, research_id, professor_id)
+	VALUES (3, 90002, 5002);
