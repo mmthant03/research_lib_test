@@ -1,9 +1,10 @@
 # research_lib_test
-Test Project for Research Library
+A simple Research Library Project for AngelHack Yangon 2018
 
 Team: ResearchHaven
 App: Research Haven
-Description: A platform for researchers and students where they can publish, recruit and learn.
+Description: A platform for local researchers and students where they can publish, recruit and learn.
+Stage: In development
 
 Frameworks and API used:
 - Spring MVC, Spring boot
